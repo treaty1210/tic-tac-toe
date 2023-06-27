@@ -13,4 +13,10 @@ let createPlayer = (playerName, marker) => {
     return {playerName, marker};
 };
 
-let player1 = createPlayer("Player 1", "X");
+let render = (() => {
+    const gridBoxes = document.querySelectorAll(".gridBox");
+    for (i = 0; i < 9; i++) {
+        gridBoxes[i].textContent = Gameboard.board;
+    }
+    return {};
+})()
