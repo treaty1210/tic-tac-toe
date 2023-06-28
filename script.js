@@ -1,6 +1,6 @@
 //module for Gameboard
 let Gameboard = (() => {
-    let board = ["X"];
+    let board = [];
     return {board};
 })();
 
@@ -23,9 +23,19 @@ let Gamecontroller = (() => {
                 gridBox.dataset.linkedButton = index;
 
                 if (gridBox.getAttribute("data-linked-button") == place.getAttribute("data-linked-button")) {
-                    gridBox.textContent = Gameboard.board[Gameboard.board.length - 1];
-                    console.log(place.dataset.linkedButton)
-                    console.log(gridBox.dataset.linkedButton)
+
+                    //adding turn switching between player1 and player 2
+                    if (player1.turn === true) {
+                    gridBox.textContent = player1.marker;
+                    player1.turn = false;
+                    player2.turn = true;
+                    } else if (player2.turn === true) {
+                        gridBox.textContent = player2.marker;
+                        player1.turn = true;
+                        player2.turn = false;
+                    } else {
+                        return;
+                    }
                 } 
                 index++
             })
@@ -35,14 +45,9 @@ let Gamecontroller = (() => {
 })();
 
 //factory for players
-let createPlayer = (playerName, marker) => {
-    return {playerName, marker};
+let createPlayer = (playerName, marker, turn) => {
+    return {playerName, marker, turn};
 };
 
-
-
-function box() {
-    placeMarker.addEventListener("click", function() {
-        alert("is this working")
-    })
-}
+const player1 = createPlayer("player 1", "X", true);
+const player2 = createPlayer("player 2", "O", false);
