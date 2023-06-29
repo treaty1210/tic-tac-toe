@@ -23,7 +23,8 @@ let gameBoard = (() => {
         box.addEventListener("click", () => {
 
             //uses current player's marker
-            box.textContent = gameController.currentPlayer.marker
+            box.textContent = gameController.currentPlayer.marker;
+
             //updates the array value to match marker
             board[index] = gameController.currentPlayer.marker;
 
@@ -51,9 +52,6 @@ let gameBoard = (() => {
 let createPlayer = (playerName, marker) => {
     return {playerName, marker};
 };
-
-
-
 
 // module for gameController
 let gameController = (() => {
@@ -105,8 +103,13 @@ let gameController = (() => {
         }
 })();
 
+//reset button
+const reset = document.querySelector(".resetBtn");
+    reset.addEventListener("click", resetBoard());
 
-
-    
-
+function resetBoard() {
+    gameBoard.board = [];
+    gameController.win = false;
+    gameController.openSpots = 9;
+}
 
