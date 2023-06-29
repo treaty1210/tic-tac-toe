@@ -103,13 +103,3 @@ let gameController = (() => {
         }
 })();
 
-//reset button
-const reset = document.querySelector(".resetBtn");
-    reset.addEventListener("click", resetBoard());
-
-function resetBoard() {
-    gameBoard.board = [];
-    gameController.win = false;
-    gameController.openSpots = 9;
-}
-
